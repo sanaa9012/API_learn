@@ -13,17 +13,6 @@ from functions.car_by_id import get_car
 
 app = Flask(__name__)
 
-#Set up your database connection
-def get_db_connection():
-    conn = psycopg2.connect(
-        dbname  =os.getenv('DBNAME'),
-        user    =os.getenv('USER'),
-        password=os.getenv('PASSWORD'),
-        host    =os.getenv('HOST'),
-        port    =os.getenv('PORT')
-    )
-    return conn
-
 @app.route('/users', methods=['GET'])
 def allusers_route():
     return get_users()

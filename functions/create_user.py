@@ -2,7 +2,7 @@ from flask import jsonify, request
 import psycopg2
 from psycopg2 import extras
 from sharedcode.db_connections import get_db_connection
-
+from sharedcode.query import create_user_query
 
 def create_user():
     connection = get_db_connection()
@@ -12,7 +12,7 @@ def create_user():
     name = data.get('name')
     email = data.get('email')
     
-    cursor.execute("INSERT INTO users (name, email) VALUES (%s, %s)", (name, email))
+    cursor.execute(create_user_query, (name, email))
     connection.commit()
     
     cursor.close()

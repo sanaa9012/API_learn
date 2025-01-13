@@ -4,6 +4,7 @@ from psycopg2 import extras
 import os
 from flask import request
 from sharedcode.db_connections import get_db_connection 
+from sharedcode.query import add_car_query
 
 def add_car():
     connection = get_db_connection()
@@ -16,7 +17,7 @@ def add_car():
     color = data.get('color')
     user_id = data.get('user_id')
     
-    cursor.execute("INSERT INTO cars(brand, model, year, color, user_id) VALUES( %s, %s, %s, %s, %s)", (brand, model, year, color, user_id))
+    cursor.execute(add_car_query, (brand, model, year, color, user_id))
     connection.commit()
     
     cursor.close()

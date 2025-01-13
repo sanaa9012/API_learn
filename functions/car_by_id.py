@@ -2,12 +2,13 @@ from flask import jsonify
 import psycopg2
 from psycopg2 import extras
 from sharedcode.db_connections import get_db_connection
+from sharedcode.query import car_by_id_query
 
 def get_car(user_id):
     connection = get_db_connection()
     cursor = connection.cursor(cursor_factory=extras.RealDictCursor)
     
-    cursor.execute("SELECT * FROM cars WHERE user_id = %s", (user_id,))
+    cursor.execute(car_by_id_query, (user_id,))
     cars = cursor.fetchall()
     
     cursor.close()
