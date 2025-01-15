@@ -25,7 +25,7 @@ cursor = conn.cursor()
 for index, row in df.iterrows():
     cursor.execute(
     'INSERT INTO sales_data ("Postcode", "Sales_Rep_ID", "Sales_Rep_Name", "Year", "Value") VALUES (%s, %s, %s, %s, %s)', (row['Postcode'], row['Sales_Rep_ID'], row['Sales_Rep_Name'], row['Year'], row['Value']))
- 
+
 conn.commit()
 cursor.close()
 conn.close()
