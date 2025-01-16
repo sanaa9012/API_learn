@@ -10,8 +10,13 @@ from functions.cars import get_cars
 from functions.sales_data import sales_data
 from functions.user_by_id import get_user   
 from functions.car_by_id import get_car
+import firebase_admin
+from firebase_admin import credentials, auth
 
 app = Flask(__name__)
+
+cred = credentials.Certificate(os.getenv('FIREBASE_CREDENTIALS'))
+firebase_admin.initialize_app(cred)
 
 @app.route('/users', methods=['GET'])
 def allusers_route():
