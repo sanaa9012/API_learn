@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import psycopg2
 from psycopg2 import extras  
 import os
@@ -12,11 +12,18 @@ from functions.user_by_id import get_user
 from functions.car_by_id import get_car
 import firebase_admin
 from firebase_admin import credentials, auth
+from functions.create_user import create_user
 
 app = Flask(__name__)
 
-cred = credentials.Certificate(os.getenv('FIREBASE_CREDENTIALS'))
-firebase_admin.initialize_app(cred)
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    email = data['email']
+    password = data['password']
+
+    user = auth.create_user(email=email, password=password)
+    return jsonify({"message": "User created", "uid": user.uid}), 201
 
 @app.route('/users', methods=['GET'])
 def allusers_route():
@@ -32,7 +39,8 @@ def cars_route():
 
 @app.route('/create_user', methods=['POST'])
 def create_user_route():
-    return create_user()
+    
+    return create_user(request)
 
 @app.route('/add_car', methods=['POST'])
 def add_car_route():
