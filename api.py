@@ -46,9 +46,9 @@ def create_user_route():
 def add_car_route():
     return add_car()
 
-@app.route('/users/<id>', methods=['GET'])
+@app.route('/get_user', methods=['GET'])
 def get_user_route():
-    return get_user()
+    return get_user(request)
     
 @app.route('/cars/<user_id>', methods=['GET'])
 def get_car_route():
