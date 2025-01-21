@@ -18,7 +18,7 @@ class FirebaseAuthService:
         
         except auth.InvalidIdTokenError as e:
             print(f"Invalid ID token error: {e}")
-            return "Authentication failed"
+            return None
         
     # def create_user(self, email, password):
     #     try:

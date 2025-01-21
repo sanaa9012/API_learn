@@ -50,8 +50,8 @@ def add_car_route():
 def get_user_route():
     return get_user(request)
     
-@app.route('/cars/<user_id>', methods=['GET'])
-def get_car_route():
+@app.route('/get_car', methods=['GET'])
+def get_car_route():    
     return get_car()
 
 if __name__ == '__main__':

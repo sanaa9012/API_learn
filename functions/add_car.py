@@ -14,10 +14,14 @@ def add_car():
     print(f'requestsss: {token}')
     firebase_auth_service = FirebaseAuthService()
     uid = firebase_auth_service.verify_firebase_token(token)
+    print(f'uid from token: {uid}')
     if uid is None:
         return jsonify({"message": "Authentication failed"}), 401
     
     print(f'uid: {uid}')
+    
+    body = request.get_json()
+    print(f'body: {body}')
     
     connection = get_db_connection()
     cursor = connection.cursor(cursor_factory=extras.RealDictCursor)

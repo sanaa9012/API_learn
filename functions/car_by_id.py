@@ -5,7 +5,7 @@ from sharedcode.db_connections import get_db_connection
 from sharedcode.query import car_by_id_query
 from sharedcode.firebase_auth import FirebaseAuthService
 
-def get_car(user_id):
+def get_car():
     token = request.headers.get('Authorization')
     if not token:
         return jsonify({"error": "Unauthorized"}), 401
@@ -16,6 +16,8 @@ def get_car(user_id):
         return jsonify({"message": "Authentication failed"}), 401
     
     print(f'uid: {uid}')    
+    
+    user_id = request.args.get('user_id')
     
     connection = get_db_connection()
     cursor = connection.cursor(cursor_factory=extras.RealDictCursor)
