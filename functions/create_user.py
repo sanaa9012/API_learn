@@ -24,7 +24,7 @@ def create_user(request):
     name = data.get('name')
     email = data.get('email')
     
-    cursor.execute(create_user_query, (name, email))
+    cursor.execute(create_user_query, (name, email, uid))
     connection.commit()
     
     cursor.close()

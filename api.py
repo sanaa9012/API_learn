@@ -13,6 +13,7 @@ from functions.car_by_id import get_car
 import firebase_admin
 from firebase_admin import credentials, auth
 from functions.create_user import create_user
+from brevo.get_email import get_emails
 
 app = Flask(__name__)
 
@@ -24,6 +25,11 @@ def register():
 
     user = auth.create_user(email=email, password=password)
     return jsonify({"message": "User created", "uid": user.uid}), 201
+
+@app.route('/send_welcome_emails', methods=['GET'])
+def send_welcome_emails():
+    result = get_emails()
+    return jsonify(result)
 
 @app.route('/users', methods=['GET'])
 def allusers_route():

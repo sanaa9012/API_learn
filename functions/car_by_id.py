@@ -32,4 +32,3 @@ def get_car():
         return jsonify(cars), 200
     else:
         return jsonify({"error": "Car with this User not found"}), 404
-    

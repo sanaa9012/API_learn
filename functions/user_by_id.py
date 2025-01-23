@@ -20,7 +20,7 @@ def get_user(request):
         return jsonify({"error": "Unauthorized"}), 401
     
     # return jsonify({"message": "User found"}), 200
-    
+        
     user_id = request.args.get('user_id')
     
     # connection = get_db_connection()
