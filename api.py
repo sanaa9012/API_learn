@@ -61,7 +61,8 @@ def get_car_route():
 
 @app.route('/get_similar', methods = ['GET'])
 def get_similar_route():
-    return get_similar()
+    keyword = request.args.get('keyword')
+    return get_similar(keyword)
 
 if __name__ == '__main__':
     app.run(debug=True)

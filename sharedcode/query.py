@@ -14,4 +14,4 @@ users_query = "SELECT * FROM users"
 
 get_email_query = "SELECT email FROM users" 
 
-keyword_query = "SELECT id, \"Questions\" FROM  questions, to_tsquery('english', '{health}') query WHERE to_tsvector('english', \"Questions\") @@ query;"
+keyword_query = "SELECT id, \"Questions\" FROM  questions, to_tsquery('english', %s) query WHERE to_tsvector('english', \"Questions\") @@ query;"
