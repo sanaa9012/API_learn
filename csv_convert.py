@@ -1,6 +1,5 @@
 import pandas as pd
 import psycopg2
-import os 
 from sharedcode.db_connections import get_db_connection
 
 conn = get_db_connection()

@@ -5,7 +5,6 @@ import os
 from flask import request 
 from functions.add_car import add_car
 from functions.users import get_users
-from functions.create_user import create_user
 from functions.cars import get_cars
 from functions.sales_data import sales_data
 from functions.user_by_id import get_user   
@@ -14,6 +13,7 @@ import firebase_admin
 from firebase_admin import credentials, auth
 from functions.create_user import create_user
 from brevo.get_email import get_emails
+from functions.get_similar import get_similar
 
 app = Flask(__name__)
 
@@ -45,7 +45,6 @@ def cars_route():
 
 @app.route('/create_user', methods=['POST'])
 def create_user_route():
-    
     return create_user(request)
 
 @app.route('/add_car', methods=['POST'])
@@ -59,6 +58,10 @@ def get_user_route():
 @app.route('/get_car', methods=['GET'])
 def get_car_route():    
     return get_car()
+
+@app.route('/get_similar', methods = ['GET'])
+def get_similar_route():
+    return get_similar()
 
 if __name__ == '__main__':
     app.run(debug=True)
